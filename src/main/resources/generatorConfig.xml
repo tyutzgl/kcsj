@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <properties resource="jdbc.properties"/>
+
+    <classPathEntry location="E:\\mysql-connector-java-5.1.20-bin.jar"/>
+
+    <context id="default" targetRuntime="MyBatis3">
+
+        <commentGenerator>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <jdbcConnection
+                driverClass="${jdbc.driver}"
+                connectionURL="${jdbc.url}"
+                userId="${jdbc.username}"
+                password="${jdbc.password}">
+        </jdbcConnection>
+
+
+        <!-- 非必需，类型处理器，在数据库类型和java类型之间的转换控制-->
+        <!-- 默认false，把JDBC decimal 和 numeric 类型解析为 Integer，
+        为 true 时把JDBC DECIMAL 和 NUMERIC 类型解析为java.math.BigDecimal -->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+
+        <!-- targetPackage：生成的实体包位置，默认存放在src目录下
+             targetProject：目标工程名 -->
+
+        <!-- pojo -->
+        <javaModelGenerator targetPackage="cn.tyutzgl.kcsj.pojo" targetProject="src/main/java"/>
+
+        <!-- dao-xml -->
+        <sqlMapGenerator targetPackage="cn.tyutzgl.kcsj.dao" targetProject="src/main/java"/>
+
+        <!-- dao-interface -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="cn.tyutzgl.kcsj.dao" targetProject="src/main/java"/>
+
+
+        <!-- 配置表
+            schema：不用填写
+            tableName: 表名
+            enableCountByExample、enableSelectByExample、enableDeleteByExample、
+            enableUpdateByExample、selectByExampleQueryId：
+            去除自动生成的例子
+        -->
+        <table schema="" tableName="userinfo"
+               enableCountByExample="false" enableSelectByExample="false"
+               enableDeleteByExample="false" enableUpdateByExample="false" selectByExampleQueryId="false" />
+
+    </context>
+</generatorConfiguration>
